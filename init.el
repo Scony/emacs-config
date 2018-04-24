@@ -14,6 +14,7 @@
   '(
     cmake-mode
     elpy
+    sr-speedbar
     ))
 
 (mapc #'(lambda (package)
