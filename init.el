@@ -15,6 +15,7 @@
     cmake-mode
     elpy
     sr-speedbar
+    textmate
     ))
 
 (mapc #'(lambda (package)
@@ -53,3 +54,13 @@
 	    (define-key elpy-mode-map (kbd "<C-left>") 'elpy-nav-indent-shift-left)
 	    (define-key elpy-mode-map (kbd "<C-right>") 'elpy-nav-indent-shift-right)
 	    ))
+
+(textmate-mode)
+(global-set-key (kbd "C-f") 'textmate-goto-file)
+
+(let ((my-tags-file (locate-dominating-file default-directory "TAGS")))
+  (when my-tags-file
+    (message "Loading tags file: %s" my-tags-file)
+    (visit-tags-table my-tags-file)))
+
+(global-set-key (kbd "M-f") 'xref-find-apropos)
