@@ -13,6 +13,7 @@
 (defvar dynamic-packages
   '(
     cmake-mode
+    elpy
     ))
 
 (mapc #'(lambda (package)
@@ -39,4 +40,15 @@
 	  (require package))
       static-packages)
 
+
+;; configuration
+
 (add-hook 'c-mode-common-hook 'google-set-c-style)
+
+(add-hook 'elpy-mode-hook
+	  (lambda ()
+	    (define-key elpy-mode-map (kbd "<M-left>") nil)
+	    (define-key elpy-mode-map (kbd "<M-right>") nil)
+	    (define-key elpy-mode-map (kbd "<C-left>") 'elpy-nav-indent-shift-left)
+	    (define-key elpy-mode-map (kbd "<C-right>") 'elpy-nav-indent-shift-right)
+	    ))
