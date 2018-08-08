@@ -16,6 +16,7 @@
     elpy
     sr-speedbar
     textmate
+    yaml-mode
     ))
 
 (mapc #'(lambda (package)
