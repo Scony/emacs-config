@@ -16,6 +16,8 @@
     elpy
     sr-speedbar
     textmate
+    clang-format
+    magit
     ))
 
 (mapc #'(lambda (package)
@@ -64,3 +66,8 @@
     (visit-tags-table my-tags-file)))
 
 (global-set-key (kbd "M-f") 'xref-find-apropos)
+(global-set-key (kbd "C-c f") 'clang-format-buffer)
+(setq clang-format-style-option "llvm")
+
+(global-set-key (kbd "C-c s") 'magit-status)
+(global-set-key (kbd "C-c b") 'magit-blame)
