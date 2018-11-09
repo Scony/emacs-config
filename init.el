@@ -68,7 +68,10 @@
 
 (global-set-key (kbd "M-f") 'xref-find-apropos)
 (global-set-key (kbd "C-c f") 'clang-format-buffer)
-(setq clang-format-style-option "llvm")
+(setq clang-format-style-option "file")
 
 (global-set-key (kbd "C-c s") 'magit-status)
 (global-set-key (kbd "C-c b") 'magit-blame)
+(global-set-key (kbd "C-c l") 'magit-log-buffer-file)
+
+(setq dired-listing-switches "-alh")
