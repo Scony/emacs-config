@@ -1,3 +1,4 @@
+(require 'cl-lib)
 (cl-assert (>= emacs-major-version 24))
 
 ;; package installation from MELPA
@@ -19,6 +20,7 @@
     yaml-mode
     clang-format
     magit
+    haskell-mode
     ))
 
 (mapc #'(lambda (package)
