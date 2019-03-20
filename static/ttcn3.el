@@ -161,7 +161,7 @@
               "system" "template" "timeout" "timer" "to" "trigger"
               "true" "type" "unmap" "value" "valueof" "var"
               "verdict.get" "verdict.set" "while" "with" "xor"
-              "xor4b") t) "\\>")
+              "xor4b" "private" "public" "select" "case") t) "\\>")
 	  '(1 font-lock-keyword-face))
 	 ;; TTCN-3 predefined (built-in) functions
 	 (list
@@ -475,8 +475,26 @@ in the info documenation for that mode."
   (easy-menu-add c-ttcn3-menu)
   (set (make-local-variable 'font-lock-defaults)
        '(ttcn3-font-lock-keywords nil nil ((?_ . "w"))))
+  ;; inlined custom config begin
+  (setq-default indent-tabs-mode nil)
+  (setq c-basic-offset 4)
+  (c-toggle-electric-state -1)
+  (setq c-syntactic-indentation nil)
+  (local-set-key (kbd "M-?") 'xref-find-references)
+  (setq truncate-lines t)
+  (local-set-key (kbd "<backtab>") 'unindent-region)
+  (defun unindent-region ()
+    (interactive)
+    (if (use-region-p)
+        (indent-rigidly (region-beginning) (region-end) -4)
+      )
+    )
+  ;; inlined custom config end
   (c-run-mode-hooks 'c-mode-common-hook 'ttcn3-mode-hook)
   (c-update-modeline))
+
+;; ttcn-3-mode for *.ttcn3 files
+(add-to-list 'auto-mode-alist '("\\.ttcn3\\'" . ttcn-3-mode))
 
 (provide 'ttcn3)
 
