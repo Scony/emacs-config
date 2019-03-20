@@ -6,6 +6,7 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+;; (package-refresh-contents)           ; in case of "not found" problems
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -21,6 +22,7 @@
     clang-format
     magit
     haskell-mode
+    go-mode
     ))
 
 (mapc #'(lambda (package)
@@ -41,6 +43,7 @@
     better-defaults
     loccur
     fill-column-indicator
+    ttcn3
     ))
 
 (mapc #'(lambda (package)
