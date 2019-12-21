@@ -23,6 +23,8 @@
     magit
     haskell-mode
     go-mode
+    markdown-mode
+    blacken
     ))
 
 (mapc #'(lambda (package)
@@ -44,6 +46,7 @@
     loccur
     fill-column-indicator
     ttcn3
+    godot-gdscript
     ))
 
 (mapc #'(lambda (package)
@@ -53,7 +56,16 @@
 
 ;; configuration
 
-(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            'google-set-c-style
+            (define-key c-mode-base-map (kbd "C-c f") 'clang-format-buffer)
+            ))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (define-key python-mode-map (kbd "C-c f") 'blacken-buffer)
+            ))
 
 (add-hook 'elpy-mode-hook
 	  (lambda ()
@@ -72,7 +84,7 @@
     (visit-tags-table my-tags-file)))
 
 (global-set-key (kbd "M-f") 'xref-find-apropos)
-(global-set-key (kbd "C-c f") 'clang-format-buffer)
+;; (global-set-key (kbd "C-c f") 'clang-format-buffer)
 (setq clang-format-style-option "file")
 
 (global-set-key (kbd "C-c s") 'magit-status)
