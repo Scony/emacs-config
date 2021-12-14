@@ -25,6 +25,8 @@
     go-mode
     markdown-mode
     blacken
+    bm
+    highlight-symbol
     ))
 
 (mapc #'(lambda (package)
@@ -90,5 +92,20 @@
 (global-set-key (kbd "C-c s") 'magit-status)
 (global-set-key (kbd "C-c b") 'magit-blame)
 (global-set-key (kbd "C-c l") 'magit-log-buffer-file)
+(global-set-key (kbd "C-c h") 'highlight-symbol)
 
 (setq dired-listing-switches "-alh")
+
+;; disable backup (*~) files
+(setq make-backup-files nil)
+
+(add-to-list 'auto-mode-alist '("\\.log\\'" . text-mode))
+(add-hook 'text-mode-hook
+          (lambda ()
+            (define-key text-mode-map (kbd "C-c t") 'bm-toggle)
+            (define-key text-mode-map (kbd "C-c n") 'bm-next)
+            (define-key text-mode-map (kbd "C-c p") 'bm-previous)
+            (define-key text-mode-map (kbd "C-c C-c") 'highlight-symbol-next)
+            (set-default 'truncate-lines t)
+            (hl-line-mode 1)
+            ))
