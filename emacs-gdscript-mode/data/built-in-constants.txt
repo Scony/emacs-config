@@ -1,0 +1,4 @@
+INF
+NAN
+PI
+TAU

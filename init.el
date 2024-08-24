@@ -49,6 +49,7 @@
     fill-column-indicator
     ttcn3
     godot-gdscript
+    gdformat
     ))
 
 (mapc #'(lambda (package)
@@ -77,6 +78,11 @@
 	    (define-key elpy-mode-map (kbd "<C-right>") 'elpy-nav-indent-shift-right)
 	    ))
 
+(add-hook 'godot-gdscript-mode-hook
+          (lambda ()
+            (define-key godot-gdscript-mode-map (kbd "C-c f") 'gdformat-buffer)
+            ))
+
 (textmate-mode)
 (global-set-key (kbd "C-f") 'textmate-goto-file)
 
@@ -90,7 +96,7 @@
 (setq clang-format-style-option "file")
 
 (global-set-key (kbd "C-c s") 'magit-status)
-(global-set-key (kbd "C-c b") 'magit-blame)
+(global-set-key (kbd "C-c b") 'magit-blame-addition)
 (global-set-key (kbd "C-c l") 'magit-log-buffer-file)
 (global-set-key (kbd "C-c h") 'highlight-symbol)
 
@@ -109,3 +115,6 @@
             (set-default 'truncate-lines t)
             (hl-line-mode 1)
             ))
+
+(add-to-list 'auto-mode-alist '("\\.shader\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.gdshader\\'" . c++-mode))

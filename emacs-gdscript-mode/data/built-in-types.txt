@@ -1,0 +1,5 @@
+bool
+float
+int
+null
+void
